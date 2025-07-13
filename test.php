@@ -36,16 +36,16 @@ class Api
 		$result = $template;
 
 		foreach ($array as $key => $el) 
-        {
-            /**
-             * Без конструкции if тоже будет работать, но с ней наглядней, 
-             * тк изменяем состояние переменной $result, лишь когда нашли нужный $key
-             */
-            if (str_contains($result, "%$key%")) 
-            {
-                $result = str_replace("%$key%", rawurlencode($el), $result);
-            }
-        }
+		{
+			/**
+			* Без конструкции if тоже будет работать, но с ней наглядней, 
+			* тк явно изменяем состояние переменной $result, лишь когда нашли нужный $key
+			*/
+			if (str_contains($result, "%$key%")) 
+			{
+				$result = str_replace("%$key%", rawurlencode($el), $result);
+			}
+		}
 		return $result;
 	}
 }
@@ -76,4 +76,4 @@ echo json_encode($api_paths, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
 
 $expected_result = ['/api/items/20/John%20Dow','/api/items/20/QA','/api/items/20/100'];
 
-echo ($expected_result === $api_paths) ? PHP_EOL . 'Success!' : PHP_EOL . 'Flai!';
+echo ($expected_result === $api_paths) ? PHP_EOL . 'Success!' : PHP_EOL . 'Flail!';
